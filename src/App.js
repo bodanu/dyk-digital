@@ -59,7 +59,7 @@ function App() {
               >
                   {posts.map((post, key) => {
                     return(
-                        <Posts key={key} title={post.title} body={post.body} id={post.id} commentCount={post.comments_count}/>
+                        <Posts key={key} title={post.title} body={post.body} id={post.id} commentCount={post.comments_count} likes={post.likers_count}/>
                     )
                   })}
                 </VStack>

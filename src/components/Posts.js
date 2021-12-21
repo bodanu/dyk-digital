@@ -1,5 +1,6 @@
 import { Heading, Text, Box, Stack, Button } from '@chakra-ui/react'
 import { BiCommentDetail } from "react-icons/bi";
+import { useState } from 'react';
 import { FaArrowUp, FaArrowDown, FaShareAlt, FaFacebook, FaTwitter } from "react-icons/fa";
 import {
   Modal,
@@ -13,22 +14,50 @@ import {
 } from '@chakra-ui/react'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import instance from "./utils/Interceptor";
+import { useSanctum } from "react-sanctum";
+import { useToast } from '@chakra-ui/react'
 
 const Posts = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { title, body, id, commentCount } = props;
+    const { title, body, id, commentCount, likes } = props;
+    const [like, setLike] = useState(likes)
     const navigate = useNavigate();
+    const { authenticated } = useSanctum();
+    const toast = useToast();
+
     const shareAction = () => {
         if (navigator.share) {
             navigator.share({
-                title: 'WebShare API Demo',
-                url: 'https://dyk.digital'
+                title: title,
+                url: 'https://dyk.digital/post/'+id
         }).then(() => {
                 console.log('Thanks for sharing!');
             })
         .catch(console.error);
         }else{
             onOpen()
+        }
+    }
+    const likeThis = () => {
+        if(authenticated){
+            setLike(like + 1);
+            const url = process.env.REACT_APP_API_URL + '/api/posts/like';
+            instance.post(url, {
+                post_id: id
+            })
+            .then((response) =>{
+                console.log(response)
+            })
+        }else{
+            toast({
+                title: 'Not allowed.',
+                description: "You need to be logged in in order to rate a DYK.",
+                status: 'warning',
+                duration: 5000,
+                isClosable: true,
+            });
+            navigate('/login');
         }
     }
     const BasicUsage = () => {
@@ -71,16 +100,17 @@ const Posts = (props) => {
             <Stack mt={8} direction={['column', 'row']} justify="space-evenly" spacing='24px'>
                 <Button
                     colorScheme='blue'
-                    leftIcon={<FaArrowUp />}
+                    leftIcon={<FaArrowUp
+                    onClick={likeThis} />}
                 >
-                33
+                {like}
                 </Button>
-                <Button
+                {/* <Button
                     colorScheme='blue'
                     leftIcon={<FaArrowDown />}
                 >
                 1
-                </Button>
+                </Button> */}
                 <Button
                     onClick={() => navigate('/post/'+id)}
                     colorScheme='blue'
