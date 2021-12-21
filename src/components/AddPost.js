@@ -3,12 +3,19 @@ import instance from "./utils/Interceptor";
 import {
   Input,
   Textarea,
-  Button
+  Button,
+  Container,
+  Center,
+  Heading,
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react'
 
 const AddPost = () => {
     const [ title,  setTitle ] = useState();
     const [ body, setBody ] = useState();
+    const navigate = useNavigate();
+    const toast = useToast();
 
     const handleSubmit = () => {
         const url = process.env.REACT_APP_API_URL + '/api/posts';
@@ -16,16 +23,25 @@ const AddPost = () => {
             title: title,
             body: body
         })
-        console.log(title)
-        console.log(body)
+        .then(() =>{
+            toast({
+                title: 'Success!',
+                description: "Your DYK has been added to the list.",
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            });
+            navigate('/');
+        })
     }
 
     return (
-        <>
-            <Input id='postTitle' type='text' onChange={(e) => {setTitle(e.target.value)}} />
-            <Textarea placeholder='DYK fact' onChange={(e) => {setBody(e.target.value)}} />
-            <Button colorScheme='blue' onClick={handleSubmit}>Submit</Button>
-        </>
+        <Container mt={20}>
+                <Heading mt={10}>Share your DYK with us</Heading>
+                <Input mt={10} placeholder='DYK title' id='postTitle' type='text' onChange={(e) => {setTitle(e.target.value)}} />
+                <Textarea mt={10} placeholder='DYK fact' onChange={(e) => {setBody(e.target.value)}} />
+                <Button mt={10} colorScheme='blue' onClick={handleSubmit}>Submit</Button>
+        </Container>
     )
 }
 

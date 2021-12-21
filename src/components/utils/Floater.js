@@ -24,7 +24,7 @@ const Floater = () => {
       }
         
   }
-  const defaultStyles: React.CSSProperties = { bottom: 24, right: 24 };
+  const defaultStyles: React.CSSProperties = { bottom: 5, right: 5 };
   return (
     <Fab
     // mainButtonStyles={mainButtonStyles}

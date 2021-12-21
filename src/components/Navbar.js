@@ -16,6 +16,7 @@ import {
   Stack,
   useColorMode,
   Center,
+  Image,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
@@ -48,7 +49,7 @@ export default function Nav() {
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>Logo</Box>
+          <Box><Link to="/"><Image boxSize='150px' objectFit='contain' src="/logo_transparent.png" alt="DYK" /></Link></Box>
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
