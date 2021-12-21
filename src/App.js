@@ -16,7 +16,9 @@ import { Sanctum } from "react-sanctum";
 //components
 import Nav from './components/Navbar';
 import AddPost from './components/AddPost';
+import Posts from './components/Posts';
 import Post from './components/Post';
+import Construction from './components/Construction';
 import SkeletonPage from './components/utils/SkeletonPage';
 import Floater from './components/utils/Floater';
 // import ColorModeToggle from './components/ColorModeToggle';
@@ -57,14 +59,16 @@ function App() {
               >
                   {posts.map((post, key) => {
                     return(
-                        <Post key={key} title={post.title} body={post.body}/>
+                        <Posts key={key} title={post.title} body={post.body} id={post.id} commentCount={post.comments_count}/>
                     )
                   })}
                 </VStack>
               </Container>} />
+              <Route path="post/:id" element={<Post />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="add" element={<AddPost />} />
+            <Route path="construction" element={<Construction />} />
         </Routes>
         <Floater />
       </ChakraProvider>

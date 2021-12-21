@@ -85,8 +85,8 @@ export default function Nav() {
                   <MenuDivider />
                   {authenticated ? 
                   <>
-                    <MenuItem>Your posts</MenuItem>
-                    <MenuItem>Account Settings</MenuItem>
+                    <MenuItem><Link to="/construction">Your posts</Link></MenuItem>
+                    <MenuItem><Link to="/construction">Account Settings</Link></MenuItem>
                     <MenuItem>
                         <p onClick={handleSignOut}>Sign Out</p>
                     </MenuItem>
