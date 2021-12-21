@@ -18,6 +18,8 @@ import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useSanctum } from "react-sanctum";
 import { useNavigate } from 'react-router-dom';
+import { Link as Rlink } from 'react-router-dom';
+
 import axios from 'axios';
 
 
@@ -112,7 +114,7 @@ export default function Register() {
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                Already a user? <Link color={'blue.400'}>Login</Link>
+                Already a user? <Link as={Rlink} to="/login" color={'blue.400'}>Login</Link>
               </Text>
             </Stack>
           </Stack>

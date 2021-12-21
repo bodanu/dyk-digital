@@ -16,6 +16,7 @@ import { useState } from 'react';
 import { useSanctum } from "react-sanctum";
 // import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link as Rlink } from 'react-router-dom';
 
 export default function Login() {
     const [email, setEmail] = useState();
@@ -72,6 +73,12 @@ export default function Login() {
                 }}>
                 Sign in
               </Button>
+               <Stack align={'center'}>
+                <Text fontSize={'lg'}>
+                    OR
+                </Text>
+                <Link as={Rlink} to="/register" color={'blue.400'}>Create a new account</Link>
+                </Stack>
             </Stack>
           </Stack>
         </Box>
