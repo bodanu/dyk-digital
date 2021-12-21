@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+// import { ReactNode } from 'react';
 import { Link } from "react-router-dom";
 import { useSanctum } from "react-sanctum";
 
@@ -12,7 +12,6 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
@@ -37,7 +36,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+//   const { isOpen, onOpen, onClose } = useDisclosure();
   const { authenticated, user, signOut } = useSanctum();
   const navigate = useNavigate();
 

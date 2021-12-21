@@ -1,4 +1,4 @@
-import { Fab, Action } from 'react-tiny-fab';
+import { Fab } from 'react-tiny-fab';
 import 'react-tiny-fab/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
 import { useSanctum } from "react-sanctum";
@@ -6,7 +6,7 @@ import { useToast } from '@chakra-ui/react'
 
 
 const Floater = () => {
-  const { authenticated, user } = useSanctum();
+  const { authenticated } = useSanctum();
   const navigate = useNavigate();
   const toast = useToast()
   const handleUpload = () => {

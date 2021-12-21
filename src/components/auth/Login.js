@@ -14,13 +14,13 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useSanctum } from "react-sanctum";
-import axios from 'axios';
+// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const { authenticated, user, signIn } = useSanctum();
+    const { signIn } = useSanctum();
     const navigate = useNavigate();
 
     const handleLogin = () => {

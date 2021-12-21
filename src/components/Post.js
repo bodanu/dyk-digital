@@ -1,4 +1,4 @@
-import { Container, Heading, Text, Box } from '@chakra-ui/react'
+import { Heading, Text, Box } from '@chakra-ui/react'
 
 const Post = (props) => {
     const { title, body } = props;

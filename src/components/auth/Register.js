@@ -22,7 +22,7 @@ import axios from 'axios';
 
 
 export default function Register() {
-  const { authenticated, user, setUser } = useSanctum();
+  const { setUser } = useSanctum();
   const [showPassword, setShowPassword] = useState(false);
   const [fname, setFname] = useState();
   const [lname, setLname] = useState();
@@ -32,7 +32,7 @@ export default function Register() {
 
   const handleRegister = () => {
       axios.post(process.env.REACT_APP_API_URL+'/api/register',{
-          name: fname + lname,
+          name: fname + " " + lname,
           email: email,
           password: password
       })

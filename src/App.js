@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChakraProvider, Container, Divider, Stack, VStack, StackDivider } from '@chakra-ui/react';
-import { Box } from "@chakra-ui/react";
+import { ChakraProvider, Container, VStack, StackDivider } from '@chakra-ui/react';
 import axios from "axios";
 import theme from './theme';
 import Login from './components/auth/Login';
@@ -20,7 +19,7 @@ import AddPost from './components/AddPost';
 import Post from './components/Post';
 import SkeletonPage from './components/utils/SkeletonPage';
 import Floater from './components/utils/Floater';
-import ColorModeToggle from './components/ColorModeToggle';
+// import ColorModeToggle from './components/ColorModeToggle';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -50,7 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <Container>
-              {posts.length == 0 && <SkeletonPage/>}
+              {posts.length === 0 && <SkeletonPage/>}
               <VStack
                 divider={<StackDivider borderColor='gray.200' />}
                 spacing={4}
