@@ -5,7 +5,6 @@ import {
   Textarea,
   Button,
   Container,
-  Center,
   Heading,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
