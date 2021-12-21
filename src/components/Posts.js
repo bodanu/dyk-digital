@@ -1,7 +1,7 @@
 import { Heading, Text, Box, Stack, Button } from '@chakra-ui/react'
 import { BiCommentDetail } from "react-icons/bi";
 import { useState } from 'react';
-import { FaArrowUp, FaArrowDown, FaShareAlt, FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaArrowUp, FaShareAlt, FaFacebook, FaTwitter } from "react-icons/fa";
 import {
   Modal,
   ModalOverlay,
