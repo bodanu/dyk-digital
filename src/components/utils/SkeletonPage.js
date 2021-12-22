@@ -6,17 +6,17 @@ const SkeletonPage = () => {
         <>
         <Stack>
             <Skeleton height='20px' />
-            <Skeleton height='60px' />
+            <Skeleton height='80px' />
             <Skeleton height='20px' />
         </Stack>
         <Stack>
             <Skeleton height='20px' />
-            <Skeleton height='60px' />
+            <Skeleton height='80px' />
             <Skeleton height='20px' />
         </Stack>
         <Stack>
             <Skeleton height='20px' />
-            <Skeleton height='60px' />
+            <Skeleton height='80px' />
             <Skeleton height='20px' />
         </Stack>
         </>
