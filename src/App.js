@@ -21,6 +21,7 @@ import Post from './components/Post';
 import Construction from './components/Construction';
 import SkeletonPage from './components/utils/SkeletonPage';
 import Floater from './components/utils/Floater';
+import Seo from './components/utils/SEO';
 // import ColorModeToggle from './components/ColorModeToggle';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
     <BrowserRouter>
       <Sanctum config={sanctumConfig}>
       <ChakraProvider theme={theme}>
+      <Seo title="DYK Facts" description="World's greates collection of Did You Know facts. Read, share and learn new things." url="https://dyk.digital"/>
       <Nav/>
         <Routes>
           <Route path="/" element={

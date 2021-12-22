@@ -16,7 +16,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import instance from "./utils/Interceptor";
 import { useSanctum } from "react-sanctum";
-import { useToast } from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react';
+import Seo from './utils/SEO';
 
 const Posts = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -64,7 +65,7 @@ const Posts = (props) => {
         
         return (
             <>
-
+            <Seo title="DYK Facts" description="World's greates collection of Did You Know facts. Read, share and learn new things." url="https://dyk.digital"/>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -100,17 +101,11 @@ const Posts = (props) => {
             <Stack mt={8} direction={['column', 'row']} justify="space-evenly" spacing='24px'>
                 <Button
                     colorScheme='blue'
-                    leftIcon={<FaArrowUp
-                    onClick={likeThis} />}
-                >
+                    leftIcon={<FaArrowUp/>}
+                    onClick={likeThis} 
+                    >
                 {like}
                 </Button>
-                {/* <Button
-                    colorScheme='blue'
-                    leftIcon={<FaArrowDown />}
-                >
-                1
-                </Button> */}
                 <Button
                     onClick={() => navigate('/post/'+id)}
                     colorScheme='blue'

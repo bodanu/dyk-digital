@@ -4,6 +4,8 @@ import axios from "axios";
 import instance from "./utils/Interceptor";
 import { useToast } from '@chakra-ui/react'
 import { Heading, Text, Box, Button, Container, Textarea } from '@chakra-ui/react'
+import { useSanctum } from "react-sanctum";
+import Seo from './utils/SEO';
 
 
 const Post = () => {
@@ -12,6 +14,7 @@ const Post = () => {
     const [comments, setComments] = useState([]);
     const [ body, setBody ] = useState();
     const toast = useToast();
+    const { authenticated } = useSanctum();
     
 
 
@@ -70,19 +73,33 @@ const Post = () => {
 
     return(
         <Container>
+        
         {post 
             ?
             <Box p={5} shadow='md' borderWidth='1px'>
+            <Seo title={post.title} description={post.body} url={"https://dyk.digital/post/" + post.id}/>
                 <Heading>{post.title}</Heading>
                 <Text>{post.body}</Text>
                 <Box>
                 <Heading mt={10}>Comments:</Heading>
                 <CommentCont/>
                 </Box>
-
-                <Heading mt={10}>Share your DYK thoughts</Heading>
-                <Textarea mt={10} placeholder='DYK comment' onChange={(e) => {setBody(e.target.value)}} />
-                <Button mt={10} colorScheme='blue' onClick={handleSubmit}>Submit</Button>
+                {
+                    
+                    authenticated 
+                    ?
+                    <Box>
+                    <Heading mt={10}>Share your DYK thoughts</Heading>
+                    <Textarea mt={10} placeholder='DYK comment' onChange={(e) => {setBody(e.target.value)}} />
+                    <Button mt={10} colorScheme='blue' onClick={handleSubmit}>Submit</Button>
+                    </Box>
+                    :
+                    <Box mt={12}>
+                    <Text>You need to be authenticated in order to share your thoughts</Text>
+                    </Box>
+                    
+                }
+                
             </Box>
             :
             <Box p={5} shadow='md' borderWidth='1px'>
