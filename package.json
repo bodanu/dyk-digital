@@ -46,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@netlify/plugin-sitemap": "^0.8.1",
+    "react-build-sitemap": "^0.2.2"
   }
 }

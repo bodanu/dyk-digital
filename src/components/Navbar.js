@@ -48,7 +48,7 @@ export default function Nav() {
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex  as="header" position="fixed" left={0} top={0} backdropFilter="saturate(180%) blur(5px)" w="100%" h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box><Link to="/"><Image boxSize='150px' objectFit='contain' src="/logo_transparent.png" alt="DYK" /></Link></Box>
 
           <Flex alignItems={'center'}>
@@ -65,6 +65,7 @@ export default function Nav() {
                   cursor={'pointer'}
                   minW={0}>
                   <Avatar
+                    mr={4}
                     size={'sm'}
                     src={'https://avatars.dicebear.com/api/male/username.svg'}
                   />
@@ -85,7 +86,7 @@ export default function Nav() {
                   <MenuDivider />
                   {authenticated ? 
                   <>
-                    <MenuItem><Link to="/construction">Your posts</Link></MenuItem>
+                    <MenuItem><Link to="/user-posts">Your posts</Link></MenuItem>
                     <MenuItem><Link to="/construction">Account Settings</Link></MenuItem>
                     <MenuItem>
                         <p onClick={handleSignOut}>Sign Out</p>

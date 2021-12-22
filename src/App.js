@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChakraProvider, Container, VStack, StackDivider } from '@chakra-ui/react';
+import { ChakraProvider, Container, VStack, StackDivider, Heading } from '@chakra-ui/react';
 import axios from "axios";
 import theme from './theme';
 import Login from './components/auth/Login';
@@ -22,6 +22,7 @@ import Construction from './components/Construction';
 import SkeletonPage from './components/utils/SkeletonPage';
 import Floater from './components/utils/Floater';
 import Seo from './components/utils/SEO';
+import UserPosts from './components/UserPosts';
 // import ColorModeToggle from './components/ColorModeToggle';
 
 function App() {
@@ -43,35 +44,41 @@ function App() {
 };
 
 
-  console.log(posts);
   return (
     <BrowserRouter>
       <Sanctum config={sanctumConfig}>
       <ChakraProvider theme={theme}>
       <Seo title="DYK Facts" description="World's greates collection of Did You Know facts. Read, share and learn new things." url="https://dyk.digital"/>
       <Nav/>
+      <Container mt="20" as="main">
         <Routes>
           <Route path="/" element={
-            <Container>
+            <>
               {posts.length === 0 && <SkeletonPage/>}
               <VStack
                 divider={<StackDivider borderColor='gray.200' />}
                 spacing={4}
                 align='stretch'
               >
-                  {posts.map((post, key) => {
+              <Heading>Top DYK's</Heading>
+                  {posts.map((post, index) => {
                     return(
-                        <Posts key={key} title={post.title} body={post.body} id={post.id} commentCount={post.comments_count} likes={post.likers_count}/>
+                        <Posts key={index} index={index} title={post.title} body={post.body} id={post.id} commentCount={post.comments_count} likes={post.likers_count}/>
                     )
                   })}
-                </VStack>
-              </Container>} />
-              <Route path="post/:id" element={<Post />} />
+              </VStack>
+            </>
+            }/>
+              
+            <Route path="post/:id" element={<Post />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="add" element={<AddPost />} />
             <Route path="construction" element={<Construction />} />
+            <Route path="user-posts" element={<UserPosts />} />
+            
         </Routes>
+        </Container>
         <Floater />
       </ChakraProvider>
       </Sanctum>

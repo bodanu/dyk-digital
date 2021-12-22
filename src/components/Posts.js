@@ -1,4 +1,4 @@
-import { Heading, Text, Box, Stack, Button } from '@chakra-ui/react'
+import { Heading, Text, Box, Stack, Button, Badge } from '@chakra-ui/react'
 import { BiCommentDetail } from "react-icons/bi";
 import { useState } from 'react';
 import { FaArrowUp, FaShareAlt, FaFacebook, FaTwitter } from "react-icons/fa";
@@ -21,7 +21,7 @@ import Seo from './utils/SEO';
 
 const Posts = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { title, body, id, commentCount, likes } = props;
+    const { title, body, id, commentCount, likes, index } = props;
     const [like, setLike] = useState(likes)
     const navigate = useNavigate();
     const { authenticated } = useSanctum();
@@ -96,6 +96,31 @@ const Posts = (props) => {
 
     return (
         <Box p={5} shadow='md' borderWidth='1px'>
+        <Stack direction={['column', 'row']} justify="left" spacing='24px'>
+        {
+            index < 2 
+            &&
+            <Badge ml='1' colorScheme='green'>
+                NEW
+            </Badge>
+        }
+        {
+            like > 1 
+            &&
+            <Badge ml='1' colorScheme='red'>
+                HOT
+            </Badge>
+        }
+        {
+            commentCount > 1 
+            &&
+            <Badge ml='1' colorScheme='red'>
+                TRENDING
+            </Badge>
+        }
+        
+
+        </Stack>
             <Heading><Link to={"/post/"+id}>{title}</Link></Heading>
             <Text>{body}</Text>
             <Stack mt={8} direction={['column', 'row']} justify="space-evenly" spacing='24px'>
