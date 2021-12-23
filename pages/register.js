@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useSanctum } from "react-sanctum";
 import { useRouter } from 'next/router';
+import { useToast } from '@chakra-ui/react'
 
 
 import axios from 'axios';
@@ -31,6 +32,7 @@ export default function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const router = useRouter();
+  const toast = useToast();
 
   const handleRegister = () => {
       axios.post(process.env.REACT_APP_API_URL+'/api/register',{
@@ -42,6 +44,15 @@ export default function Register() {
         const user = response.data;
         setUser(user);
         router.push('/');
+      })
+      .catch(()=>{
+           toast({
+                title: 'Error!',
+                description: "Something went wrong. Please make sure the data is valid and password is at least 8 characters long and try again.",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
       })
   }
 

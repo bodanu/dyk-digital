@@ -17,17 +17,28 @@ import { useSanctum } from "react-sanctum";
 // import axios from 'axios';
 import { useRouter } from 'next/router';
 // import { Link as Rlink } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react'
+
 
 export default function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const { signIn } = useSanctum();
     const router = useRouter();
+    const toast = useToast();
 
     const handleLogin = () => {
         signIn(email, password)
         .then(() => router.push("/"))
-        .catch(() => window.alert("Incorrect email or password"));
+        .catch(() => {
+            toast({
+                title: 'Error!',
+                description: "Incorrect email or password.",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
+        });
     }
   return (
     <Flex

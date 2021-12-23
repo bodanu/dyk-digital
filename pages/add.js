@@ -37,13 +37,23 @@ const AddPost = () => {
             setTitle('');
             setBody('');
         })
+        .catch(() =>{
+            setIsloading(false);
+            toast({
+                title: 'Error!',
+                description: "The DYK's body is a required field",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
+        })
     }
 
     return (
         <Container mt={20}>
                 <Heading mt={10}>Share your DYK with us</Heading>
-                <Input mt={10} placeholder='DYK title' id='postTitle' value={title} type='text' onChange={(e) => {setTitle(e.target.value)}} />
-                <Textarea size="lg" resize="vertical" mt={10} value={body} placeholder='DYK fact' onChange={(e) => {setBody(e.target.value)}} />
+                <Input mt={10} placeholder='Dyd you know...' id='postTitle' value={title} type='text' onChange={(e) => {setTitle(e.target.value)}} />
+                <Textarea isRequired size="lg" resize="vertical" mt={10} value={body} placeholder='DYK fact' onChange={(e) => {setBody(e.target.value)}} />
                 <Button isLoading={isLoading} mt={10} colorScheme='blue' onClick={handleSubmit}>Submit</Button>
         </Container>
     )
