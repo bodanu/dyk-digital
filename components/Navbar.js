@@ -1,4 +1,4 @@
-// import { ReactNode } from 'react';
+import { useRouter } from 'next/router'
 import Link from 'next/link';
 import { useSanctum } from "react-sanctum";
 
@@ -39,16 +39,16 @@ export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
 //   const { isOpen, onOpen, onClose } = useDisclosure();
   const { authenticated, user, signOut } = useSanctum();
-//   const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSignOut = () => {
       signOut()
-    //   .then(() => navigate('/'))
+      .then(() => router.push('/'))
   }
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex  as="header" position="fixed" left={0} top={0} backdropFilter="saturate(180%) blur(5px)" w="100%" h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex style={{zIndex: "99"}}  as="header" position="fixed" left={0} top={0} backdropFilter="saturate(180%) blur(5px)" w="100%" h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box><Link href="/" passHref><Image boxSize='150px' objectFit='contain' src="/logo_transparent.png" alt="DYK" /></Link></Box>
 
           <Flex alignItems={'center'}>
