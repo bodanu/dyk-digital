@@ -23,14 +23,20 @@ import { useToast } from '@chakra-ui/react'
 export default function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [ isLoading, setIsloading] =useState(false);
     const { signIn } = useSanctum();
     const router = useRouter();
     const toast = useToast();
 
     const handleLogin = () => {
+        setIsloading(true);
         signIn(email, password)
-        .then(() => router.push("/"))
+        .then(() => {
+            setIsloading(false);
+            router.push("/")
+          })
         .catch(() => {
+          setIsloading(false);
             toast({
                 title: 'Error!',
                 description: "Incorrect email or password.",
@@ -79,6 +85,7 @@ export default function Login() {
                 bg={'blue.400'}
                 color={'white'}
                 onClick={handleLogin}
+                isLoading={isLoading}
                 _hover={{
                   bg: 'blue.500',
                 }}>

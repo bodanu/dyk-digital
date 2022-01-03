@@ -33,19 +33,23 @@ export default function Register() {
   const [password, setPassword] = useState();
   const router = useRouter();
   const toast = useToast();
+  const [ isLoading, setIsloading] =useState(false);
 
   const handleRegister = () => {
+    setIsloading(true);
       axios.post(process.env.REACT_APP_API_URL+'/api/register',{
           name: fname + " " + lname,
           email: email,
           password: password
       })
       .then((response) => {
+        setIsloading(false);
         const user = response.data;
         setUser(user);
         router.push('/');
       })
       .catch(()=>{
+        setIsloading(false);
            toast({
                 title: 'Error!',
                 description: "Something went wrong. Please make sure the data is valid and password is at least 8 characters long and try again.",
@@ -116,6 +120,7 @@ export default function Register() {
                 size="lg"
                 bg={'blue.400'}
                 color={'white'}
+                isLoading={isLoading}
                 onClick={handleRegister}
                 _hover={{
                   bg: 'blue.500',

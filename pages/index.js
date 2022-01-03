@@ -45,6 +45,8 @@ function App({ posts }) {
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://dyk.digital/logo_transparent.png" />
         <link rel="icon" href="/favicon.ico" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8264636882792770"
+        crossorigin="anonymous"></script>
       </Head>
       <Container mt="20" as="main">
         <>
