@@ -5,10 +5,7 @@ import instance from "./../components/utils/Interceptor";
 const Sitemap = () => {};
 
 export const getServerSideProps = async ({ res }) => {
-  const baseUrl = {
-    development: "http://localhost:3000",
-    production: "https://dyk.digital",
-  }[process.env.NODE_ENV];
+  const baseUrl = "https://dyk.digital";
 
 
   const request = await instance.get(process.env.REACT_APP_API_URL + '/api/posts');
