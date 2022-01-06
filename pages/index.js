@@ -51,7 +51,7 @@ function App({ posts }) {
           {posts.length === 0 && <SkeletonPage/>}
           <VStack
             divider={<StackDivider borderColor="gray.200" />}
-            spacing={4}
+            spacing={4} 
             align='stretch'
           >
           <Heading>Top DYKs</Heading>
