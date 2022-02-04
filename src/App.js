@@ -60,7 +60,7 @@ function App() {
                 spacing={4}
                 align='stretch'
               >
-              <Heading>Top DYK's</Heading>
+              <Heading>Top DYKs</Heading>
                   {posts.map((post, index) => {
                     return(
                         <Posts key={index} index={index} title={post.title} body={post.body} id={post.id} commentCount={post.comments_count} likes={post.likers_count}/>

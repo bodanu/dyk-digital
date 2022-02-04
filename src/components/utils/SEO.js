@@ -7,6 +7,10 @@ const Seo = ({title, description, url = []}) => {
           htmlAttributes={{ lang: "en" }}
           meta={[
         {
+          name: `title`,
+          content: title,
+        },
+        {
           name: `description`,
           content: description,
         },

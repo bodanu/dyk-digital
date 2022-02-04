@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import axios from "axios";
 import instance from "./utils/Interceptor";
 import { useToast } from '@chakra-ui/react'
-import { Heading, Text, Box, Button, Container, Textarea } from '@chakra-ui/react'
+import { Heading, Text, Box, Button, Container, Textarea, Flex } from '@chakra-ui/react'
 import { useSanctum } from "react-sanctum";
 import Seo from './utils/SEO';
+import { Link } from "react-router-dom";
 
 
 const Post = () => {
@@ -72,14 +73,36 @@ const Post = () => {
     }
 
     return(
-        <Container>
+     <Container>
+  
+          {/* <Head>
+            <title>{post.title}</title>
+            <meta name="description" content={post.body} />
+            <meta property="og:title" content={post.title} />
+            <meta property="og:description" content={post.body} />
+            <meta property="og:url" content={"https://dyk.digital/posts" + id} />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content="https://dyk.digital/logo_transparent.png" />
+            <link rel="icon" href="/favicon.ico" />
+        </Head> */}
+         <Flex
+            minH={'100vh'}
+            align={'center'}
+            justify={'center'}
+            >
         
         {post 
             ?
+           
             <Box p={5} shadow='md' borderWidth='1px'>
-            <Seo title={post.title} description={post.body} url={"https://dyk.digital/post/" + post.id}/>
+                <Seo 
+                    title={post.title}
+                    description={post.body}
+                    url={"https://dyk.digital/posts" + id}
+                />
                 <Heading>{post.title}</Heading>
                 <Text>{post.body}</Text>
+                <Box mt={1}><Link to="/"><Button mt={10} colorScheme='blue'>Go back to all the DYKs</Button></Link></Box>
                 <Box>
                 <Heading mt={10}>Comments:</Heading>
                 <CommentCont/>
@@ -105,6 +128,7 @@ const Post = () => {
             <Box p={5} shadow='md' borderWidth='1px'>
             </Box>
         }
+        </Flex>
         </Container>
     )
 
