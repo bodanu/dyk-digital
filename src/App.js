@@ -70,7 +70,7 @@ function App() {
             </>
             }/>
               
-            <Route path="post/:id" element={<Post />} />
+            <Route path="posts/:id" element={<Post />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="add" element={<AddPost />} />
