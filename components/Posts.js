@@ -1,6 +1,6 @@
 import { Heading, Text, Box, Stack, Button, Badge } from '@chakra-ui/react'
 import { BiCommentDetail } from "react-icons/bi";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaArrowUp, FaShareAlt, FaFacebook, FaTwitter } from "react-icons/fa";
 import {
   Modal,
@@ -17,14 +17,65 @@ import { useSanctum } from "react-sanctum";
 import { useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+import Web3 from 'web3';
+import Web3Utils from 'web3-utils';
 
 const Posts = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { title, body, id, commentCount, likes, index } = props;
+    const { title, body, id, commentCount, likes, index, owner } = props;
     const [like, setLike] = useState(likes)
     const router = useRouter()
     const { authenticated } = useSanctum();
     const toast = useToast();
+    const [account, setAccount] = useState(); // state variable to set account.
+    const [w3con, setW3con] = useState();
+    const [test, setTest]  = useState()
+
+    const abi = JSON.parse(process.env.REACT_APP_CONTRACT_ABI);
+    const contract_addr = process.env.REACT_APP_CONTRACT_ADDR;
+
+    let web3
+
+    useEffect(() => {
+        setTest(window.ethereum)
+        async function load() {
+        
+       
+          if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined')
+            {
+                // we are in the browser and metamask is running
+                // window.ethereum.request({ method: "eth_requestAccounts" });
+                // web3 = new Web3(window.ethereum);
+                const eth = window.ethereum;
+                web3 = new Web3(eth || "https://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
+                const accounts = await web3.eth.requestAccounts();
+          
+                setAccount(accounts[0]);
+            }
+            else
+            {
+                // we are on the server *OR* the user is not running metamask
+                // https://medium.com/jelly-market/how-to-get-infura-api-key-e7d552dd396f
+                const provider = new Web3.providers.HttpProvider("https://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
+                web3 = new Web3(provider);
+                const accounts = await web3.eth.requestAccounts();
+          
+                setAccount(accounts[0]);
+            }
+          
+          
+          //   const addDyk = new web3.eth.Contract(abi, contract_addr);
+            const contract = new web3.eth.Contract(abi, contract_addr);
+            setW3con(contract)
+        //   setContactList(contactList);
+        //   const dyks = await contactList.methods.getDyks().call();
+        //   const addDyk = await contactList.methods.addDyk("Something", "Somethinf").send({from: accounts[0]});
+
+        //   setContacts(dyks)
+        }
+        
+        load();
+    }, []);
 
     const shareAction = () => {
         if (navigator.share) {
@@ -39,26 +90,40 @@ const Posts = (props) => {
             onOpen()
         }
     }
+    // const likeThis = () => {
+    //     if(authenticated){
+    //         setLike(like + 1);
+    //         const url = process.env.REACT_APP_API_URL + '/api/posts/like';
+    //         instance.post(url, {
+    //             post_id: id
+    //         })
+    //         .then((response) =>{
+    //             console.log(response)
+    //         })
+    //     }else{
+    //         toast({
+    //             title: 'Not allowed.',
+    //             description: "You need to be logged in in order to rate a DYK.",
+    //             status: 'warning',
+    //             duration: 5000,
+    //             isClosable: true,
+    //         });
+    //         router.push('/login');
+    //     }
+    // }
     const likeThis = () => {
-        if(authenticated){
-            setLike(like + 1);
-            const url = process.env.REACT_APP_API_URL + '/api/posts/like';
-            instance.post(url, {
-                post_id: id
-            })
-            .then((response) =>{
-                console.log(response)
-            })
-        }else{
+        const amountToSend = Web3Utils.toWei("0.01", "ether");
+        w3con.methods.likeDyk(id, owner).send({from: account, value: amountToSend})
+        .then(function(receipt){
+            // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
             toast({
-                title: 'Not allowed.',
-                description: "You need to be logged in in order to rate a DYK.",
-                status: 'warning',
+                title: 'Success!',
+                description: "Your DYK has been added to the list.",
+                status: 'success',
                 duration: 5000,
                 isClosable: true,
             });
-            router.push('/login');
-        }
+        });
     }
     const BasicUsage = () => {
         
@@ -121,6 +186,8 @@ const Posts = (props) => {
         </Stack>
             <Heading><Link href={"/posts/"+id}>{title}</Link></Heading>
             <Text>{body}</Text>
+            <hr/>
+            <Text fontSize='xs' as="em">Author - {owner}</Text>
             <Stack mt={8} direction={['column', 'row']} justify="space-evenly" spacing='24px'>
                 <Button
                     colorScheme='blue'

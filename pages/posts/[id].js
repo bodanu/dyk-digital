@@ -52,27 +52,27 @@ const Post = ({ post }) => {
         })
     }
 
-    const CommentCont = () => {
-        return(
-            comments.length === 0
-                    ?
-                    <Text mt={4} fontSize={'md'} color={'gray.600'}>
-                            No comments yet...
-                    </Text>
-                    :
-            comments.map((comment, key) => {
-                return(
+    // const CommentCont = () => {
+    //     return(
+    //         comments.length === 0
+    //                 ?
+    //                 <Text mt={4} fontSize={'md'} color={'gray.600'}>
+    //                         No comments yet...
+    //                 </Text>
+    //                 :
+    //         comments.map((comment, key) => {
+    //             return(
                     
-                    <Box key={key}>
-                        <Text mt={4} fontSize={'md'} color={'gray.600'}>
-                            {comment.user.name} wrote: 
-                        </Text>
-                    <Text fontSize={'lg'} mt={4}>{comment.body}</Text>
-                    </Box>
-                )
-            })
-        )
-    }
+    //                 <Box key={key}>
+    //                     <Text mt={4} fontSize={'md'} color={'gray.600'}>
+    //                         {comment.user.name} wrote: 
+    //                     </Text>
+    //                 <Text fontSize={'lg'} mt={4}>{comment.body}</Text>
+    //                 </Box>
+    //             )
+    //         })
+    //     )
+    // }
 
     return(
         <Container>
@@ -100,7 +100,7 @@ const Post = ({ post }) => {
                 <Box mt={1}><Link href="/" passHref><Button mt={10} colorScheme='blue'>Go back to all the DYKs</Button></Link></Box>
                 <Box>
                 <Heading mt={10}>Comments:</Heading>
-                <CommentCont/>
+                {/* <CommentCont/> */}
                 </Box>
                 {
                     

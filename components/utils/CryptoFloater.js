@@ -15,18 +15,18 @@ const Floater = () => {
   const router = useRouter();
   const toast = useToast()
   const handleUpload = () => {
-    router.push('/cryptoadd');
-      // if(authenticated){
-      // }else{
-      //   toast({
-      //     title: 'Not logged in.',
-      //     description: "You need to be logged in before creating a new post.",
-      //     status: 'warning',
-      //     duration: 5000,
-      //     isClosable: true,
-      //   })
-      //   router.push('/login');
-      // }
+      if(authenticated){
+          router.push('/add');
+      }else{
+        toast({
+          title: 'Not logged in.',
+          description: "You need to be logged in before creating a new post.",
+          status: 'warning',
+          duration: 5000,
+          isClosable: true,
+        })
+        router.push('/login');
+      }
         
   }
 //   const defaultStyles: React.CSSProperties = { bottom: 5, right: 5 };
