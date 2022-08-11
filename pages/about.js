@@ -90,7 +90,7 @@ export default function Construction() {
         <strong>These funds will not go to us, they will be sent straight to the DYK author!</strong><br/><br/>
         For example: <br/>
         User A posts a DYK. He does not pay anything except the gas fee for that. <br/>
-        User B reads and likes User A's post. When he clicks on the &ldquo;Like&ldquo; button, he pays 0.01 rETH. The funds are sent to
+        User B reads and likes User A&lsquo;s post. When he clicks on the &ldquo;Like&ldquo; button, he pays 0.01 rETH. The funds are sent to
         the smart contract which transfers them to User A&lsquo;s wallet.
     </Box>
       {/* <Text fontSize="18px" mt={3} mb={2}>
