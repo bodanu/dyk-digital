@@ -22,6 +22,8 @@ import SkeletonPage from './../components/utils/SkeletonPage';
 // import ColorModeToggle from './components/ColorModeToggle';
 import Web3 from 'web3';
 import { useEffect, useState } from 'react';
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
 export default function Eth(){
     const [account, setAccount] = useState(); // state variable to set account.
 
@@ -33,7 +35,12 @@ export default function Eth(){
 
     useEffect(() => {
         async function load() {
-          const web3 = new Web3(Web3.givenProvider || "wss://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
+        const provider = new WalletConnectProvider({
+          infuraId: "a4af2f72e0954ab9895e0247dff11a83",
+        });
+        await provider.enable();
+        web3 = new Web3(provider);
+          // const web3 = new Web3(Web3.givenProvider || "wss://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
         //   const accounts = await web3.eth.requestAccounts();
           
         //   setAccount(accounts[0]);
