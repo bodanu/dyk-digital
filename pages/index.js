@@ -32,7 +32,7 @@ export default function Eth(){
 
     const [contactList, setContactList] = useState();
     let [contacts, setContacts] = useState([]);
-
+    let web3
     useEffect(() => {
         async function load() {
         const provider = new WalletConnectProvider({
