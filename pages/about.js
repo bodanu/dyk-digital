@@ -1,4 +1,4 @@
-import { Box, Heading, Text, Button, Container, Link } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, Container, Link, List, ListItem, UnorderedList } from '@chakra-ui/react';
 // import { useNavigate } from 'react-router-dom';
 import { useRouter } from 'next/router';
 
@@ -54,6 +54,16 @@ export default function Construction() {
         depending on future development progress and gas cost future values, 
         the project may be launched on the main network or moved to another 
         cheaper blockchain.
+    </Box>
+    <Box padding='2'>
+        Technologies used:<br/><br/>
+        <UnorderedList>
+            <ListItem>Solidity - smart contract</ListItem>
+            <ListItem>Javascript (NextJS) - the web app</ListItem>
+            <ListItem>web3js - library for interacting with the blockchain</ListItem>
+            <ListItem>Chakra UI - library for the UI</ListItem>
+        </UnorderedList>
+
     </Box>
     <Box paddingTop='18'>
         <Heading
