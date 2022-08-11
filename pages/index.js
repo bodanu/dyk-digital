@@ -77,8 +77,8 @@ export default function Eth(){
         <Container mt="20" as="main">
         <Heading align="center"  size='xl'>DYKs</Heading>
         <Heading mt='10' mb='10' style={{textAlign: "center"}} size='md'>Development version</Heading>
-        <Heading mt='10' mb='10' size='md'>In order to interact with the app make sure you set the wallet network to Ropsten test network => <Link href="http://www.herongyang.com/Ethereum/MetaMask-Extension-Add-Ropsten-Test-Network.html" target="_blank">See instructions</Link><ExternalLinkIcon mx='2px'/></Heading>
-        <Heading mt='10' mb='10' size='md'>Ropsten ETH faucet => <Link href="https://faucet.egorfine.com/" target="_blank">Get free rETH</Link><ExternalLinkIcon mx='2px'/></Heading>
+        <Heading mt='10' mb='10' size='md'>In order to interact with the app make sure you set the wallet network to Ropsten test network =&gt; <Link href="http://www.herongyang.com/Ethereum/MetaMask-Extension-Add-Ropsten-Test-Network.html" target="_blank">See instructions</Link><ExternalLinkIcon mx='2px'/></Heading>
+        <Heading mt='10' mb='10' size='md'>Ropsten ETH faucet =&gt; <Link href="https://faucet.egorfine.com/" target="_blank">Get free rETH</Link><ExternalLinkIcon mx='2px'/></Heading>
 
           <>
             {contacts.length === 0 && <SkeletonPage/>}
