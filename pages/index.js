@@ -29,7 +29,7 @@ export default function Eth(){
     const contract_addr = process.env.REACT_APP_CONTRACT_ADDR;
 
     const [contactList, setContactList] = useState();
-    const [contacts, setContacts] = useState([]);
+    let [contacts, setContacts] = useState([]);
 
     useEffect(() => {
         async function load() {

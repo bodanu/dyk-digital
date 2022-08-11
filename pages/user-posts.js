@@ -14,7 +14,7 @@ const UserPosts = () => {
      const [account, setAccount] = useState(); // state variable to set account.
      const [w3con, setW3con] = useState();
      const [contactList, setContactList] = useState();
-     const [contacts, setContacts] = useState([]);
+     let [contacts, setContacts] = useState([]);
      let web3
      useEffect(() => {
          async function load() {
