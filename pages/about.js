@@ -71,7 +71,7 @@ export default function Construction() {
     </Box>
     <Box padding='2'>
         The authentication process is handled by any WalletConnect compatible wallet.
-        The most common are "MetaMask", "TrustWallet", "My Ether Wallet (MEW)", etc. <br/>
+        The most common are &ldquo;MetaMask&ldquo;, &ldquo;TrustWallet&ldquo;, &ldquo;My Ether Wallet (MEW)&ldquo;, etc. <br/>
         Find more information about WalletConnect <Link href="https://walletconnect.com/" passHref><strong>here</strong></Link>
     </Box>
     <Box padding='2'>
@@ -85,13 +85,13 @@ export default function Construction() {
         on the blockchain will cost gas. The gas cost will depend on loads of factors and is calculated
         on the spot.<br/><br/>
         Posting a new DYK requires only the gas fee, which is usually quite small.<br/>
-        Other actions such as "Like" or "Comment" are not free. A fixed ammount of rETH (currency may change before launch)
+        Other actions such as &ldquo;Like&ldquo; or &ldquo;Comment&ldquo; are not free. A fixed ammount of rETH (currency may change before launch)
         is required. Make sure your wallet contains these funds before trying to hit the like button. <br/> <br/>
         <strong>These funds will not go to us, they will be sent straight to the DYK author!</strong><br/><br/>
         For example: <br/>
         User A posts a DYK. He does not pay anything except the gas fee for that. <br/>
-        User B reads and likes User A's post. When he clicks on the "Like" button, he pays 0.01 rETH. The funds are sent to
-        the smart contract which transfers them to User A's wallet.
+        User B reads and likes User A's post. When he clicks on the &ldquo;Like&ldquo; button, he pays 0.01 rETH. The funds are sent to
+        the smart contract which transfers them to User A&lsquo;s wallet.
     </Box>
       {/* <Text fontSize="18px" mt={3} mb={2}>
         Page is under construction
