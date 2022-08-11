@@ -200,10 +200,9 @@ const Posts = (props) => {
         
 
         </Stack>
-            <Heading><Link href="/construction">{title}</Link></Heading>
-            <Text>{body}</Text>
-            <hr/>
-            <Text fontSize='xs' as="em">Author - {owner}</Text>
+            <Heading mb="5"><Link href="/construction">{title}</Link></Heading>
+            <Text mb="3">{body}</Text>
+            <Text mt="3" mb="2" fontSize='xs' as="em">Author - {owner}</Text>
             <Stack mt={8} direction={['column', 'row']} justify="space-evenly" spacing='24px'>
                 <Button
                     colorScheme='blue'

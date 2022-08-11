@@ -1,5 +1,6 @@
 // import { useState, useEffect } from 'react';
-import { Container, VStack, StackDivider, Heading } from '@chakra-ui/react';
+import { Container, VStack, StackDivider, Heading, Divider } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 import axios from "axios";
 import Head from 'next/head'
 
@@ -74,6 +75,10 @@ export default function Eth(){
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Container mt="20" as="main">
+        <Heading align="center"  size='xl'>DYKs</Heading>
+        <Heading mt='10' mb='10' style={{textAlign: "center"}} size='md'>Development version</Heading>
+        <Heading mt='10' mb='10' size='md'>In order to interact with the app make sure you set the wallet network to Ropsten test network => <Link href="http://www.herongyang.com/Ethereum/MetaMask-Extension-Add-Ropsten-Test-Network.html" target="_blank">See instructions</Link><ExternalLinkIcon mx='2px'/></Heading>
+
           <>
             {contacts.length === 0 && <SkeletonPage/>}
             <VStack
@@ -81,7 +86,7 @@ export default function Eth(){
               spacing={4} 
               align='stretch'
             >
-            <Heading>DYKs</Heading>
+            
                 {contacts.map((post, index) => {
                   return(
                       <Posts key={index} index={index} title={post.title} body={post.body} id={post.id} commentCount="0" likes={post.likes} owner={post.owner}/>
