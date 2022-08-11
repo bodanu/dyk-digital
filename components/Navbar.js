@@ -49,7 +49,7 @@ export default function Nav() {
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex style={{zIndex: "99"}}  as="header" position="fixed" left={0} top={0} backdropFilter="saturate(180%) blur(5px)" w="100%" h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box><Link href="/" passHref><Image boxSize='150px' objectFit='contain' src="/logo_transparent.png" alt="DYK" /></Link></Box>
+          <Box style={{cursor: "pointer"}}><Link href="/" passHref><Image boxSize='150px' objectFit='contain' src="/logo_transparent.png" alt="DYK" /></Link></Box>
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
@@ -80,27 +80,28 @@ export default function Nav() {
                   </Center>
                   <br />
                   <Center>
-                    <p>{authenticated ? user.name : "Log In or Create an account"}</p>
+                    <p>Welcome!</p>
                   </Center>
                   <br />
                   <MenuDivider />
-                  {authenticated ? 
+                  {
                   <>
+                    <MenuItem><Link href="/about">About the project</Link></MenuItem>
                     <MenuItem><Link href="/user-posts">Your posts</Link></MenuItem>
                     <MenuItem><Link href="/construction">Account Settings</Link></MenuItem>
-                    <MenuItem>
+                    {/* <MenuItem>
                         <p onClick={handleSignOut}>Sign Out</p>
-                    </MenuItem>
+                    </MenuItem> */}
                     </>
-                    :
-                    <>
-                    <MenuItem>
-                        <Link href="/login">Log In</Link>
-                    </MenuItem>
-                     <MenuItem>
-                        <Link href="/register">Create a new account</Link>
-                    </MenuItem>
-                    </>
+                    
+                    // <>
+                    // <MenuItem>
+                    //     <Link href="/login">Log In</Link>
+                    // </MenuItem>
+                    //  <MenuItem>
+                    //     <Link href="/register">Create a new account</Link>
+                    // </MenuItem>
+                    // </>
                   }
                   
                 </MenuList>

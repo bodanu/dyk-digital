@@ -19,6 +19,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link';
 import Web3 from 'web3';
 import Web3Utils from 'web3-utils';
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const Posts = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -29,7 +30,6 @@ const Posts = (props) => {
     const toast = useToast();
     const [account, setAccount] = useState(); // state variable to set account.
     const [w3con, setW3con] = useState();
-    const [test, setTest]  = useState()
 
     const abi = JSON.parse(process.env.REACT_APP_CONTRACT_ABI);
     const contract_addr = process.env.REACT_APP_CONTRACT_ADDR;
@@ -37,44 +37,50 @@ const Posts = (props) => {
     let web3
 
     useEffect(() => {
-        setTest(window.ethereum)
         async function load() {
         
        
-          if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined')
-            {
-                // we are in the browser and metamask is running
-                // window.ethereum.request({ method: "eth_requestAccounts" });
-                // web3 = new Web3(window.ethereum);
-                const eth = window.ethereum;
-                web3 = new Web3(eth || "https://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
-                const accounts = await web3.eth.requestAccounts();
-          
-                setAccount(accounts[0]);
-            }
-            else
-            {
-                // we are on the server *OR* the user is not running metamask
-                // https://medium.com/jelly-market/how-to-get-infura-api-key-e7d552dd396f
-                const provider = new Web3.providers.HttpProvider("https://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
-                web3 = new Web3(provider);
-                const accounts = await web3.eth.requestAccounts();
-          
-                setAccount(accounts[0]);
-            }
-          
-          
-          //   const addDyk = new web3.eth.Contract(abi, contract_addr);
+            //   if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined')
+            //     {
+            //         // we are in the browser and metamask is running
+            //         // window.ethereum.request({ method: "eth_requestAccounts" });
+            //         // web3 = new Web3(window.ethereum);
+            //         const eth = window.ethereum;
+            //         web3 = new Web3(eth || "https://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
+            //         const accounts = await web3.eth.requestAccounts();
+              
+            //         setAccount(accounts[0]);
+            //     }
+            //     else
+            //     {
+            //         // we are on the server *OR* the user is not running metamask
+            //         // https://medium.com/jelly-market/how-to-get-infura-api-key-e7d552dd396f
+            //         const provider = new Web3.providers.HttpProvider("https://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
+            //         web3 = new Web3(provider);
+            //         const accounts = await web3.eth.requestAccounts();
+              
+            //         setAccount(accounts[0]);
+            //     }
+            const provider = new WalletConnectProvider({
+                infuraId: "a4af2f72e0954ab9895e0247dff11a83",
+            });
+            await provider.enable();
+            web3 = new Web3(provider);
+            const accounts = await web3.eth.getAccounts();
+        
+            setAccount(accounts[0]);
+              
+              //   const addDyk = new web3.eth.Contract(abi, contract_addr);
             const contract = new web3.eth.Contract(abi, contract_addr);
             setW3con(contract)
-        //   setContactList(contactList);
-        //   const dyks = await contactList.methods.getDyks().call();
-        //   const addDyk = await contactList.methods.addDyk("Something", "Somethinf").send({from: accounts[0]});
-
-        //   setContacts(dyks)
-        }
-        
-        load();
+            //   setContactList(contactList);
+            //   const dyks = await contactList.methods.getDyks().call();
+            //   const addDyk = await contactList.methods.addDyk("Something", "Somethinf").send({from: accounts[0]});
+    
+            //   setContacts(dyks)
+            }
+            
+            load();
     }, []);
 
     const shareAction = () => {
@@ -112,13 +118,23 @@ const Posts = (props) => {
     //     }
     // }
     const likeThis = () => {
+        if(owner == account){
+            toast({
+                title: 'Error!',
+                description: "You cannot like your own DYK",
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
+            return
+        }
         const amountToSend = Web3Utils.toWei("0.01", "ether");
         w3con.methods.likeDyk(id, owner).send({from: account, value: amountToSend})
         .then(function(receipt){
             // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
             toast({
                 title: 'Success!',
-                description: "Your DYK has been added to the list.",
+                description: "You successfully liked a DYK",
                 status: 'success',
                 duration: 5000,
                 isClosable: true,
@@ -184,7 +200,7 @@ const Posts = (props) => {
         
 
         </Stack>
-            <Heading><Link href={"/posts/"+id}>{title}</Link></Heading>
+            <Heading><Link href="/construction">{title}</Link></Heading>
             <Text>{body}</Text>
             <hr/>
             <Text fontSize='xs' as="em">Author - {owner}</Text>
@@ -197,7 +213,7 @@ const Posts = (props) => {
                 {like}
                 </Button>
                 <Button
-                    onClick={() => router.push('/posts/'+id)}
+                    onClick={() => router.push('/construction')}
                     colorScheme='blue'
                     leftIcon={<BiCommentDetail />}
                 >

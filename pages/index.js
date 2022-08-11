@@ -48,10 +48,12 @@ export default function Eth(){
         
         load();
        }, []);
+       
     // const web3 = new Web3(Web3.givenProvider || "wss://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
     // const accounts = web3.eth.requestAccounts();
-    console.log(contacts)
-
+    // console.log(contacts)
+    contacts = [...contacts];
+    contacts = contacts.reverse()
     return (
         <>
         <Head>
