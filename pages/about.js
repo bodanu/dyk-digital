@@ -47,7 +47,7 @@ export default function Construction() {
         </Heading>
     </Box>
     <Box padding='4'>
-    <Heading size='md'>In order to interact with the app make sure you set the wallet network to Ropsten test network => <Link href="http://www.herongyang.com/Ethereum/MetaMask-Extension-Add-Ropsten-Test-Network.html" target="_blank">See instructions</Link><ExternalLinkIcon mx='2px'/></Heading>
+    <Heading size='md'>In order to interact with the app make sure you set the wallet network to Ropsten test network =&gt; <Link href="http://www.herongyang.com/Ethereum/MetaMask-Extension-Add-Ropsten-Test-Network.html" target="_blank">See instructions</Link><ExternalLinkIcon mx='2px'/></Heading>
     <br/>
         DYK.digital is a web3 project. This means it is a fully decentralized app that 
         does not have a conventional back-end to handle user authentication and data
