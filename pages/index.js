@@ -41,8 +41,11 @@ export default function Eth(){
     });
     useEffect(() => {
         async function load() {
-       
-        await provider.enable();
+       try{
+         await provider.enable();
+       }catch{
+          setChain(401)
+       }
         web3 = new Web3(provider);
           // const web3 = new Web3(Web3.givenProvider || "wss://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
         //   const accounts = await web3.eth.requestAccounts();
@@ -101,6 +104,7 @@ export default function Eth(){
           <>
             {chain == 1 && <Heading color="tomato" mt='20' mb='10' size='md'>We detected you are on ETH main net!<br/>
             Please folow the above instructions for switching to Ropsten test network and reload the page in order to proceed</Heading>}
+            {chain == 401 && <Heading color="tomato" mt='20' mb='10' size='md'>You have closed the authentication modal. Please refresh the page and try again</Heading>}
             {chain !=1 && contacts.length === 0  && <SkeletonPage/>}
             <VStack
               divider={<StackDivider borderColor="gray.200" />}
