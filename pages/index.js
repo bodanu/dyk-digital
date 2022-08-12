@@ -6,6 +6,7 @@ import Head from 'next/head'
 
 import Login from './../components/auth/Login';
 import Register from './../components/auth/Register';
+import Router from 'next/router'
 
 import Link from 'next/link'
 
@@ -33,12 +34,14 @@ export default function Eth(){
 
     const [contactList, setContactList] = useState();
     let [contacts, setContacts] = useState([]);
+    const [chain, setChain] = useState();
     let web3
+    const provider = new WalletConnectProvider({
+      infuraId: "a4af2f72e0954ab9895e0247dff11a83",
+    });
     useEffect(() => {
         async function load() {
-        const provider = new WalletConnectProvider({
-          infuraId: "a4af2f72e0954ab9895e0247dff11a83",
-        });
+       
         await provider.enable();
         web3 = new Web3(provider);
           // const web3 = new Web3(Web3.givenProvider || "wss://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
@@ -46,9 +49,16 @@ export default function Eth(){
           
         //   setAccount(accounts[0]);
         //   const addDyk = new web3.eth.Contract(abi, contract_addr);
-          const contactList = new web3.eth.Contract(abi, contract_addr);
-          setContactList(contactList);
-          const dyks = await contactList.methods.getDyks().call();
+        const chainId = await web3.eth.getChainId();
+        // console.log(chainId)
+        setChain(chainId)
+        if(chainId == 1){
+          return
+        }
+        
+        const contactList = new web3.eth.Contract(abi, contract_addr);
+        setContactList(contactList);
+        const dyks = await contactList.methods.getDyks().call();
         //   const addDyk = await contactList.methods.addDyk("Something", "Somethinf").send({from: accounts[0]});
 
           setContacts(dyks)
@@ -56,12 +66,21 @@ export default function Eth(){
         
         load();
        }, []);
+
+      provider.on("chainChanged", (chainId) => {
+        setChain(chainId)
+        if(chainId != chain){
+          // Router.reload(window.location.pathname)
+        }
+      });
        
     // const web3 = new Web3(Web3.givenProvider || "wss://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
     // const accounts = web3.eth.requestAccounts();
     // console.log(contacts)
-    contacts = [...contacts];
-    contacts = contacts.reverse()
+    if(contacts.length > 0){
+      contacts = [...contacts];
+      contacts = contacts.reverse()
+    }
     return (
         <>
         <Head>
@@ -79,9 +98,9 @@ export default function Eth(){
         <Heading mt='10' mb='10' style={{textAlign: "center"}} size='md'>Development version</Heading>
         <Heading mt='10' mb='10' size='md'>In order to interact with the app make sure you set the wallet network to Ropsten test network =&gt; <Link href="http://www.herongyang.com/Ethereum/MetaMask-Extension-Add-Ropsten-Test-Network.html" target="_blank">See instructions</Link><ExternalLinkIcon mx='2px'/></Heading>
         <Heading mt='10' mb='10' size='md'>Ropsten ETH faucet =&gt; <Link href="https://faucet.egorfine.com/" target="_blank">Get free rETH</Link><ExternalLinkIcon mx='2px'/></Heading>
-
           <>
-            {contacts.length === 0 && <SkeletonPage/>}
+            {chain == 1 && <Heading mt='10' mb='10' size='sm'>We detected you are on ETH main net. Please switch to Ropsten test network and reload the page in order to proceed</Heading>}
+            {chain !=1 && contacts.length === 0  && <SkeletonPage/>}
             <VStack
               divider={<StackDivider borderColor="gray.200" />}
               spacing={4} 

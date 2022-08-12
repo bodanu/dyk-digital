@@ -63,6 +63,7 @@ export default function Nav() {
                   rounded={'full'}
                   variant={'link'}
                   cursor={'pointer'}
+                  key={'menu-button-2'}
                   minW={0}>
                   <Avatar
                     mr={4}
