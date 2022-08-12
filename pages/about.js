@@ -123,6 +123,9 @@ export default function Construction() {
             Go back Home
         </Button>
     </Box>
+    <Box padding='10'>
+      <Text style={{textAlign: "center"}}>&copy; 2022 - Kir.digital. All rights reserved</Text>
+    </Box>
     </Box>
     </Container>
   );
