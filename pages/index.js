@@ -99,7 +99,8 @@ export default function Eth(){
         <Heading mt='10' mb='10' size='md'>In order to interact with the app make sure you set the wallet network to Ropsten test network =&gt; <Link href="http://www.herongyang.com/Ethereum/MetaMask-Extension-Add-Ropsten-Test-Network.html" target="_blank">See instructions</Link><ExternalLinkIcon mx='2px'/></Heading>
         <Heading mt='10' mb='10' size='md'>Ropsten ETH faucet =&gt; <Link href="https://faucet.egorfine.com/" target="_blank">Get free rETH</Link><ExternalLinkIcon mx='2px'/></Heading>
           <>
-            {chain == 1 && <Heading mt='10' mb='10' size='sm'>We detected you are on ETH main net. Please switch to Ropsten test network and reload the page in order to proceed</Heading>}
+            {chain == 1 && <Heading color="tomato" mt='20' mb='10' size='md'>We detected you are on ETH main net!<br/>
+            Please folow the above instructions for switching to Ropsten test network and reload the page in order to proceed</Heading>}
             {chain !=1 && contacts.length === 0  && <SkeletonPage/>}
             <VStack
               divider={<StackDivider borderColor="gray.200" />}
