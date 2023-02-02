@@ -27,7 +27,7 @@ export default function Eth(){
 
     useEffect(() => {
         async function load() {
-          const web3 = new Web3(Web3.givenProvider || "wss://ropsten.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
+          const web3 = new Web3(Web3.givenProvider || "wss://goerli.infura.io/ws/v3/a4af2f72e0954ab9895e0247dff11a83");
           const accounts = await web3.eth.requestAccounts();
           
           setAccount(accounts[0]);

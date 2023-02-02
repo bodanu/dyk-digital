@@ -2,7 +2,7 @@ module.exports = {
   reactStrictMode: true,
    env: {
     REACT_APP_API_URL: "https://api.dyk.digital",
-    REACT_APP_CONTRACT_ADDR: "0x04f757ed4d783d28b69e5e36af6e745ad2c60f14",
+    REACT_APP_CONTRACT_ADDR: "0x4Dc34481b25E268BB9B685dBCAC4aA546b0861cC",
     REACT_APP_CONTRACT_ABI: '[{"inputs":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"body","type":"string"}],"name":"addDyk","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"dyks","outputs":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"body","type":"string"},{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"likes","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"dyksCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getDyks","outputs":[{"components":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"body","type":"string"},{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"likes","type":"uint256"}],"internalType":"struct DykDigital.AllDyks[]","name":"","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"address payable","name":"pay_to","type":"address"}],"name":"likeDyk","outputs":[],"stateMutability":"payable","type":"function"}]',
   },
 }
